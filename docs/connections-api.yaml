@@ -1,0 +1,58 @@
+---
+openapi: 3.0.0
+info:
+  title: UdaConnect Connections API
+  version: "1.0"
+servers:
+  - url: /
+tags:
+  - name: UdaConnect
+    description: Connections via geolocation.
+paths:
+  /api/persons/{person_id}/connection:
+    get:
+      tags:
+        - UdaConnect
+      operationId: get_connection_data_resource
+      parameters:
+        - name: distance
+          in: query
+          description: Proximity to a given user in meters
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: end_date
+          in: query
+          description: Upper bound of date range
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          description: Lower bound of date range
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: person_id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+components:
+  schemas: {}
+  responses:
+    ParseError:
+      description: When a mask can't be parsed
+    MaskError:
+      description: When any error occurs on mask

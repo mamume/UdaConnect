@@ -1,2 +1,7 @@
-psycopg2-binary==2.9.4
+jsonschema==4.16.0
+geoalchemy2==0.12.5
 kafka-python==2.0.2
+shapely==1.8.5.post1
+sqlalchemy==1.4.42
+marshmallow==3.18.0
+flask-sqlalchemy==3.0.2

@@ -1,3 +1,5 @@
-kafka-python==2.0.2
+grpcio==1.50.0
 grpcio-tools==1.50.0
 protobuf==4.21.8
+jsonschema==4.16.0
+kafka-python==2.0.2

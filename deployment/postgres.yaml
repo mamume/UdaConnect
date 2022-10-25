@@ -39,7 +39,7 @@ spec:
   selector:
     app: postgres
   ports:
-   - port: 5432
+    - port: 5432
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -62,21 +62,21 @@ spec:
           ports:
             - containerPort: 5432
           env:
-          - name: POSTGRES_USER
-            valueFrom:
-              configMapKeyRef:
-                name: db-env
-                key: DB_USERNAME
-          - name: POSTGRES_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: db-secret
-                key: DB_PASSWORD
-          - name: POSTGRES_DB
-            valueFrom:
-              configMapKeyRef:
-                name: db-env
-                key: DB_NAME
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: db-env
+                  key: DB_USERNAME
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: DB_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: db-env
+                  key: DB_NAME
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: postgresdb

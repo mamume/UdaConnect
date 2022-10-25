@@ -15,7 +15,7 @@ logger = logging.getLogger("udaconnect-api")
 class ConnectionService:
     @staticmethod
     def find_contacts(person_id: int, start_date: datetime, end_date: datetime, meters=5
-    ) -> List[Connection]:
+                      ) -> List[Connection]:
         """
         Finds all Person who have been within a given distance of a given Person within a date range.
 
@@ -30,7 +30,8 @@ class ConnectionService:
         ).all()
 
         # Cache all users in memory for quick lookup
-        person_map: Dict[str, Person] = {person.id: person for person in PersonService.retrieve_all()}
+        person_map: Dict[str, Person] = {
+            person.id: person for person in PersonService.retrieve_all()}
 
         # Prepare arguments for queries
         data = []
@@ -98,13 +99,15 @@ class LocationService:
     def create(location: Dict) -> Location:
         validation_results: Dict = LocationSchema().validate(location)
         if validation_results:
-            logger.warning(f"Unexpected data format in payload: {validation_results}")
+            logger.warning(
+                f"Unexpected data format in payload: {validation_results}")
             raise Exception(f"Invalid payload: {validation_results}")
 
         new_location = Location()
         new_location.person_id = location["person_id"]
         new_location.creation_time = location["creation_time"]
-        new_location.coordinate = ST_Point(location["latitude"], location["longitude"])
+        new_location.coordinate = ST_Point(
+            location["latitude"], location["longitude"])
         db.session.add(new_location)
         db.session.commit()
 

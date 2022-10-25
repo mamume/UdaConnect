@@ -2,13 +2,12 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from app import db  # noqa
+from __init__ import db
 from geoalchemy2 import Geometry
 from geoalchemy2.shape import to_shape
 from shapely.geometry.point import Point
 from sqlalchemy import BigInteger, Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.ext.hybrid import hybrid_property
-
 
 
 class Person(db.Model):
@@ -49,9 +48,9 @@ class Location(db.Model):
     @hybrid_property
     def longitude(self) -> str:
         coord_text = self.wkt_shape
-        return coord_text[coord_text.find(" ") + 1 : coord_text.find(")")]
+        return coord_text[coord_text.find(" ") + 1: coord_text.find(")")]
 
     @hybrid_property
     def latitude(self) -> str:
         coord_text = self.wkt_shape
-        return coord_text[coord_text.find("(") + 1 : coord_text.find(" ")]
+        return coord_text[coord_text.find("(") + 1: coord_text.find(" ")]

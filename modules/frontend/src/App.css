@@ -30,6 +30,7 @@ body {
   text-decoration: none;
   font: bold 1.5rem "Oswald", sans-serif;
 }
+
 .lists {
   display: flex;
   flex-wrap: wrap;
@@ -79,6 +80,7 @@ body {
   background: #fff;
   border: 5px solid #02b3e4;
 }
+
 .connectionListItem {
   background: #fff;
 }
@@ -92,6 +94,7 @@ body {
   .lists {
     flex-wrap: nowrap;
   }
+
   .peopleBox,
   .connectionBox {
     flex-basis: 50%;

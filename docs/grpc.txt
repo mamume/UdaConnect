@@ -1,0 +1,23 @@
+# Documentation
+
+## Message Format
+
+```proto
+syntax = "proto3";
+
+message LocationMessage {
+    int32 person_id = 1;
+    float latitude = 2;
+    float longitude = 3;
+}
+
+service LocationService {
+    rpc Create(LocationMessage) returns (LocationMessage);
+}
+```
+
+## Steps
+
+- Install Requirements `pip install -r modules/location_producer/requirements.txt`
+- Run Server `python3 modules/location_producer/main.py`
+- Send a message `python3 modules/location_producer/writer.py`

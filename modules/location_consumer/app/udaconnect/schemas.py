@@ -1,5 +1,6 @@
 from marshmallow import Schema, fields
-from app.udaconnect.models import Location
+from models import Location
+
 
 class LocationSchema(Schema):
     id = fields.Integer()

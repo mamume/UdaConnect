@@ -1,0 +1,15 @@
+# Architecture Decisions
+
+## Message Passing Strategies
+
+### REST API (Persons & Connections)
+
+The front-end client used REST API to connect to persons and connections services. REST API is the current industry standard with less complexity.
+
+### gRPC (Locations)
+
+Location data is retrieved from mobile devices using gRPC which improve security, flexibility and performance with regards to message sizes and overhead of connections. This is important to handle large location data from numerous mobile devices.
+
+### Kafka (Locations)
+
+A massage queue to handle the location data. Using Kafka improves performance and durability with the large volume of data.

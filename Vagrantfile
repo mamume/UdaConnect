@@ -19,13 +19,13 @@ Vagrant.configure("2") do |config|
   config.vm.network 'private_network', ip: "192.168.0.200",  virtualbox__intnet: true
   config.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: true
   config.vm.network "forwarded_port", guest: 22, host: 2000 # config Node SSH
-  config.vm.network "forwarded_port", guest: 6443, host: 6443
+  config.vm.network "forwarded_port", guest: 6443, host: 1234
   for p in 30000..30100 # expose NodePort IP's
     config.vm.network "forwarded_port", guest: p, host: p, protocol: "tcp"
     end
   config.vm.provider "virtualbox" do |v|
-    v.cpus = 4
-    v.memory = "5048"
+    v.cpus = 2
+    v.memory = "3048"
     v.name = "config"
     end
 

@@ -1,12 +1,11 @@
 from datetime import datetime
+from typing import Optional
 
 from app.udaconnect.schemas import ConnectionSchema
-
 from app.udaconnect.services import ConnectionService
 from flask import request
 from flask_accepts import responds
 from flask_restx import Namespace, Resource
-from typing import Optional
 
 DATE_FORMAT = "%Y-%m-%d"
 
@@ -26,7 +25,8 @@ class ConnectionDataResource(Resource):
         start_date: datetime = datetime.strptime(
             request.args["start_date"], DATE_FORMAT
         )
-        end_date: datetime = datetime.strptime(request.args["end_date"], DATE_FORMAT)
+        end_date: datetime = datetime.strptime(
+            request.args["end_date"], DATE_FORMAT)
         distance: Optional[int] = request.args.get("distance", 5)
 
         results = ConnectionService.find_contacts(

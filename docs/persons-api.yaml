@@ -1,0 +1,50 @@
+---
+openapi: 3.0.0
+info:
+  title: UdaConnect Persons API
+  version: 0.1.0-oas3
+servers:
+  - url: /
+tags:
+  - name: UdaConnect
+    description: Connections via geolocation.
+paths:
+  /api/persons:
+    get:
+      tags:
+        - UdaConnect
+      operationId: get_persons_resource
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - UdaConnect
+      operationId: post_persons_resource
+      responses:
+        "200":
+          description: Success
+  /api/persons/{person_id}:
+    get:
+      tags:
+        - UdaConnect
+      operationId: get_person_resource
+      parameters:
+        - name: person_id
+          in: path
+          description: Unique ID for a given Person
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+components:
+  schemas: {}
+  responses:
+    ParseError:
+      description: When a mask can't be parsed
+    MaskError:
+      description: When any error occurs on mask

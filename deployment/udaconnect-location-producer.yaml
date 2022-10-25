@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: udaconnect-location-producer
+  name: udaconnect-location-producer
+spec:
+  ports:
+    - name: "5005"
+      port: 5005
+      targetPort: 5005
+      nodePort: 30005
+  selector:
+    service: udaconnect-location-producer
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: udaconnect-location-producer
+  name: udaconnect-location-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: udaconnect-location-producer
+  template:
+    metadata:
+      labels:
+        service: udaconnect-location-producer
+    spec:
+      containers:
+        - image: mamume/udaconnect-location-producer:latest
+          name: udaconnect-location-producer
+          imagePullPolicy: Always
+      restartPolicy: Always
